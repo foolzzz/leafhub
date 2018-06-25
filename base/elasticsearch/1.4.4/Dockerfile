@@ -13,7 +13,7 @@ RUN set -ex \
 
 WORKDIR /usr/share/elasticsearch
 
-ENV PATH /usr/share/elasticsearch:${PATH}
+ENV PATH /usr/share/elasticsearch/bin:${PATH}
 
 RUN set -ex \
         && plugin -install mobz/elasticsearch-head/1.x
