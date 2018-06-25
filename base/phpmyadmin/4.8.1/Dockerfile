@@ -1,7 +1,7 @@
 
 # copy from phiton
 
-FROM php:7.2-apache
+FROM php:5.6-apache
 # php:5.6-apache update 很慢..
 
 MAINTAINER fa11ing1eaf fa11ing1eaf@aliyun.com
@@ -30,11 +30,10 @@ RUN set -ex \
         && docker-php-ext-install iconv mbstring mysqli \
         && rm -r /var/lib/apt/lists/*
 
-
-COPY phpMyAdmin-4.8.1-all-languages.zip /tmp/phpMyAdmin-4.8.1-all-languages.zip
 RUN set -ex \
+        && curl -#SL ${SOURCE_URL} -o /tmp/phpmyadmin_4.8.1.zip \
         && unzip -q /tmp/phpmyadmin_4.8.1.zip \
-        && /bin/cp /tmp/phpMyAdmin-4.8.1-all-languages/* /var/www/html/ \
+        && /bin/cp -r /tmp/phpMyadmin-*/* /var/www/html/ \
         && rm -rf /tmp/*
 
 
