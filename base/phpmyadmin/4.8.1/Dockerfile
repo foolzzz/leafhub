@@ -22,8 +22,9 @@ RUN set -ex \
 
 RUN set -ex \
         && curl -#SL ${SOURCE_URL} -o /tmp/phpmyadmin_4.8.1.zip \
+        && cd /tmp/ \
         && unzip -q /tmp/phpmyadmin_4.8.1.zip \
-        && /bin/cp -r /tmp/phpMyadmin-*/* /var/www/html/ \
+        && /bin/cp -r phpMyAdmin-4.8.1-all-languages/* /var/www/html/ \
         && rm -rf /tmp/*
 
 
