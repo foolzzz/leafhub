@@ -14,14 +14,27 @@ ARG SOURCE_URL=https://files.phpmyadmin.net/phpMyAdmin/4.8.1/phpMyAdmin-4.8.1-al
 #https://github.com/phpmyadmin/phpmyadmin/archive/RELEASE_4_8_1.tar.gz
         #&& curl -#SL ${SOURCE_URL}  | tar zx -C /var/www/html --strip-components=1
 
+#RUN set -ex \
+        #&& apt-get update \
+        #&& apt-get install -y --no-install-recommends unzip \
+        #&& docker-php-ext-install iconv mbstring mysqli \
+        #&& rm -r /var/lib/apt/lists/* \
+        #&& curl -#SL ${SOURCE_URL} -o /tmp/phpmyadmin_4.8.1.zip \
+        #&& unzip -q /tmp/phpmyadmin_4.8.1.zip \
+        #&& /bin/cp -r phpMyadmin-*/* /var/www/html/ \
+        #&& rm -rf /tmp/*
+
 RUN set -ex \
         && apt-get update \
         && apt-get install -y --no-install-recommends unzip \
         && docker-php-ext-install iconv mbstring mysqli \
-        && rm -r /var/lib/apt/lists/* \
-        && curl -#SL ${SOURCE_URL} -o /tmp/phpmyadmin_4.8.1.zip \
+        && rm -r /var/lib/apt/lists/*
+
+
+COPY phpMyAdmin-4.8.1-all-languages.zip /tmp/phpMyAdmin-4.8.1-all-languages.zip
+RUN set -ex \
         && unzip -q /tmp/phpmyadmin_4.8.1.zip \
-        && /bin/cp -r phpMyadmin-*/* /var/www/html/ \
+        && /bin/cp /tmp/phpMyAdmin-4.8.1-all-languages/* /var/www/html/ \
         && rm -rf /tmp/*
 
 
