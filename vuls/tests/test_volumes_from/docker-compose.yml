@@ -1,0 +1,12 @@
+
+version: "2"
+services:
+    biz:
+        build: .
+        volumes_from:
+            - dbdata
+    dbdata:
+        image: ubuntu:14.04
+        volumes:
+            - /var/lib/mysql
+
